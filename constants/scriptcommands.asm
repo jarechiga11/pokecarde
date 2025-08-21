@@ -112,6 +112,10 @@ MACRO setflag
 	db $29
 	dw \1
 	ENDM
+MACRO clearflag
+	db $2A
+	dw \1
+	ENDM
 MACRO checkflag
 	db $2B
 	dw \1
