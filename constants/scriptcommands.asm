@@ -156,6 +156,9 @@ MACRO faceplayer
 MACRO waitmsg
 	db $66
 	ENDM
+MACRO closeonkeypress
+	db $68
+	ENDM
 MACRO lock
 	db $6A
 	ENDM

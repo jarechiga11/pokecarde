@@ -1,5 +1,6 @@
 INCLUDE "../macros.asm"
 INCLUDE "../constants/scriptcommands.asm"
+INCLUDE "../constants/items.asm"
 INCLUDE "../constants/fossils.asm"
 
 	Mystery_Event
@@ -17,6 +18,12 @@ DataStart:
 	GBAPTR FossilManiacScriptEnd
 
 
+	db MIX_RECORDS_ITEM
+	db 1  ; ???
+	db 30
+	dw EON_TICKET
+
+
 	db PRELOAD_SCRIPT
 	GBAPTR PreloadScriptStart
 
@@ -24,12 +31,12 @@ DataStart:
 	db END_OF_CHUNKS
 
 FossilManiacScriptStart:
-	setvirtualaddress PrinterScriptStart
+	setvirtualaddress FossilManiacScriptStart
 
 	lock
 	faceplayer
 
-	virtualmsgbox Revisit
+	virtualmsgbox News
 	waitmsg
 	waitkeypress
 
@@ -37,16 +44,19 @@ FossilManiacScriptStart:
 	clearflag FLAG_HIDE_ROOT_FOSSIL
 	clearflag FLAG_HIDE_CLAW_FOSSIL
 
-	closemessage
+	closeonkeypress
 	release
 	killscript
 	end
 
-Revisit:
+News:
 	Text_EN "The news said a sandstorm just\n"
 	Text_EN "passed through on ROUTE 111.\p"
+	Text_EN "Maybe more fossils have appeared?@"
 
-	Text_EN "Maybe more fossils will appear?@"
+Start:
+	Text_EN "Go find the fossil maniac on\n"
+	Text_EN "ROUTE 114.@"
 
 FossilManiacScriptEnd:
 
@@ -56,10 +66,6 @@ PreloadScriptStart:
 	virtualloadpointer Start
 	setbyte 2
 	end
-
-Start:
-	Text_EN "Go find the fossil maniac on\n"
-	Text_EN "ROUTE 114.@"
 
 DataEnd:
 	EOF

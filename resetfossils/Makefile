@@ -1,8 +1,8 @@
 all: build/00-F000-EN-01.raw verify
 
-# .PHONY: verify
-# verify: build/00-F000-EN.z80
-# 	md5sum --check resetfossils.md5
+.PHONY: verify
+verify: build/00-F000-EN-01.z80
+	md5sum --check resetfossils.md5
 
 build/prologue-%.tx: prologue.asm
 	python3 ../scripts/regionalize.py $< $@ $* $*

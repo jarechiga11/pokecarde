@@ -12,14 +12,14 @@ Prologue:
 	INCBIN "prologue-{REGION_NAME}.bin"
 
 DataPacket: ; 164a
-	INCBIN "fossil-{REGION_NAME}.mev"
+	INCBIN "resetfossils-{REGION_NAME}.mev"
 	db 0,0,0 ; padding
 
 INCLUDE "../common/mem_struct.asm"
 
 SpriteData:
 	dw FossilSprite,FossilPalette
-	db $15,$08,$01,$01,$01,$01,$01 ; width 15, height 8
+	db $01,$01,$01,$01,$01,$01,$01 ; width 1, height 1
 
 Instructions1: ; 1921
 	db "Link e-Reader to Pokémon Ruby or \n"
